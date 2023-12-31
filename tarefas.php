@@ -9,35 +9,48 @@ require "ajudantes.php";
 
 $exibir_tabela = true;
 
-if (array_key_exists('nome', $_GET) /*&& $_GET['nome'] != ''*/) {
-    $semEspacoBranco = trim($_GET['nome']);
+$tem_erros = false;
+$erros_validacao = [];
 
-    if ($semEspacoBranco != "") {
-        $tarefa = [
-            'nome' => $_GET['nome'],
-            'descricao' => '',
-            'prazo' => '',
-            'prioridade' => $_GET['prioridade'],
-            'concluida' => 0,
-        ];
-        if (array_key_exists('descricao', $_GET)) {
-            $tarefa['descricao'] = $_GET['descricao'];
-        }
-        if (array_key_exists('prazo', $_GET)) {
-            $tarefa['prazo'] =
-                traduz_data_para_banco($_GET['prazo']);
-        }
-        if (array_key_exists('concluida', $_GET)) {
-            $tarefa['concluida'] = 1;
-        }
+// if (array_key_exists('nome', $_POST)) {
+//     $semEspacoBranco = trim($_POST['nome']);
 
-        //$_SESSION['lista_tarefas'][] = $tarefa;
+//     if ($semEspacoBranco != "") {
+if (tem_post()) {
+    $tarefa = [
+        'id' => $_POST['id'],
+        'nome' => $_POST['nome'],
+        'descricao' => '',
+        'prazo' => '',
+        'prioridade' => $_POST['prioridade'],
+        'concluida' => 0,
+    ];
+    if (strlen($tarefa['nome']) == 0) {
+        $tem_erros = true;
+        $erros_validacao['nome'] = 'O nome da tarefa é obrigatório!';
+    }
+    if (array_key_exists('descricao', $_POST)) {
+        $tarefa['descricao'] = $_POST['descricao'];
+    }
+    if (array_key_exists('prazo', $_POST)) {
+        $tarefa['prazo'] =
+            traduz_data_para_banco($_POST['prazo']);
+    }
+    if (array_key_exists('concluida', $_POST)) {
+        $tarefa['concluida'] = 1;
+    }
+
+    //$_SESSION['lista_tarefas'][] = $tarefa;
+    if (!$tem_erros) {
         gravar_tarefa($conexao, $tarefa);
-    } else {
         header('Location: tarefas.php');
-        exit();
+        die();
     }
 }
+// else {
+//     header('Location: tarefas.php');
+//     exit();
+// }
 
 
 /*  PARA FAZER A CONEXÃO COM O BANCO DE DADOS ESSA SESSÃO SERÁ APAGADA

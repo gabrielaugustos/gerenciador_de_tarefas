@@ -2,7 +2,7 @@
     // Onde será exibido o formulário para inserir dados da tarefa
 ?>
 
-<form>
+<form method="POST">
     <input type="hidden" name="id" value="<?php echo $tarefa['id']; ?>" />
     <fieldset>
         <legend>Nova tarefa</legend>
@@ -13,7 +13,7 @@
         <label>
             Descrição (Opcional):
             <textarea name="descricao">
-            <?php echo $tarefa['descricao']; ?>
+            <?php echo trim($tarefa['descricao']); ?>
             </textarea>
         </label>
         <label>
@@ -41,7 +41,7 @@
         </fieldset>
         <label>
             Tarefa concluída:
-            <input type="checkbox" name="concluida" value="1" <?php echo ($tarefa['concluida'] == 1)
+            <input type="checkbox" name="concluida" value="1"  <?php echo ($tarefa['concluida'] == 1)
                 ? 'checked'
                 : '';
             ?> />
