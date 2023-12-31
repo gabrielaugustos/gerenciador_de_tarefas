@@ -23,22 +23,22 @@
 
     <?php
 
-    /*
+    
     $lista_tarefas = [];
     if (array_key_exists('nome', $_GET)) {
         $lista_tarefas[] = $_GET['nome'];
     }
-    */
+    
 
-    if (array_key_exists('nome', $_GET)) {
-        if($_GET['nome'] != ''){
-            $_SESSION['lista_tarefas'][] = $_GET['nome'];
-        }
-    }
-    $lista_tarefas = [];
-    if (array_key_exists('lista_tarefas', $_SESSION)) {
-        $lista_tarefas = $_SESSION['lista_tarefas'];
-    }
+    // if (array_key_exists('nome', $_GET)) {
+    //     if($_GET['nome'] != ''){
+    //         $_SESSION['lista_tarefas'][] = $_GET['nome'];
+    //     }
+    // }
+    // $lista_tarefas = [];
+    // if (array_key_exists('lista_tarefas', $_SESSION)) {
+    //     $lista_tarefas = $_SESSION['lista_tarefas'];
+    // }
 
     ?>
 

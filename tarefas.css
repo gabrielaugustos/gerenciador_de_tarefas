@@ -3,6 +3,13 @@ body {
     color: #333;
 }
 
+form {
+    margin: 0 auto;
+    /* Centraliza o conteúdo horizontalmente */
+    max-width: 800px;
+    /* Defina a largura máxima desejada */
+}
+
 h1 {
     text-align: center;
 }
@@ -24,6 +31,7 @@ label {
 
 input[type=text],
 textarea {
+    max-width: 800px;
     width: 100%;
     border: 1px solid #333;
     padding: 3px;
@@ -36,7 +44,9 @@ input[type=submit] {
 }
 
 table {
-    width: 100%;
+    margin: 30px auto;
+    width: 70%;
+    box-sizing: border-box;
 }
 
 table th {

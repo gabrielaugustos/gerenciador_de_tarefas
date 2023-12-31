@@ -48,5 +48,11 @@ function traduz_data_para_exibir($data)
     return $data_exibir;
 }
 
-
+function traduz_concluida($concluida)
+{
+    if ($concluida == 1) {
+        return 'Sim';
+    }
+    return 'Não';
+}
 ?>
